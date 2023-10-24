@@ -1,57 +1,43 @@
-# Quant-trading-project-maf
-Quantitative trading using Golden Cross and EMA.
+![222331629-1251660d-9ad8-4545-b970-016715b609f8](https://github.com/MayankBharati/Quant-Trading-Project/assets/75744167/9540d5fc-6fa5-4b58-90ce-837eb5da4c4d)# Quantitative Analysis Using Golden Cross and EMA
 
-In the last few years, the golden crossover and death crossover trading strategy has seen vast popularity and has been widely used by traders in hopes to gather significant returns. Through this project, we try to implement this trading strategy and compare its performance with a buy and hold strategy across equity, forex, and cryptocurrency segments.
+## Overview
 
-# Trading Strategy Overview 
-**Moving Average:** A moving average is a technical indicator used by market speculators and traders in which the price of a security is summed up over a specified period and averaged out. This moving average is plotted on the price chart to observe trends in the movement of the security. There are two main types of moving averages which are simple moving average (SMA) and exponential moving average (EMA).
+In this GitHub project, we explore a quantitative trading strategy based on the "Golden Cross" and "Death Cross" concepts, using Exponential Moving Averages (EMA). This strategy has gained significant attention in recent years and is widely employed by traders aiming to achieve substantial returns. Our project implements and evaluates this trading strategy, comparing its performance with a traditional buy-and-hold approach across equity, forex, and cryptocurrency markets.
 
-**Simple Moving Average:** This indicator takes the sum of the price over the specified period and finds the average value over the period. This is a lagging indicator which to look for entry and exit in the security.
+## Trading Strategy
 
-**Exponential Moving Average:** This indicator is like SMA except the fact that it gives more weightage to recent data points to account for recent price changes. It does so by including a smoothing factor which can be variable. The most common smoothing factor is 2.
+Our trading strategy relies on the principles of moving averages, specifically the Simple Moving Average (SMA) and the Exponential Moving Average (EMA). These moving averages are crucial technical indicators used to identify trends and inform trading decisions. The Golden Cross, a bullish indicator, occurs when a short-term moving average crosses above a long-term moving average, while the Death Cross, a bearish indicator, happens when the short-term moving average crosses below the long-term moving average. By using these crosses, we aim to pinpoint optimal entry and exit points in the market.
 
-**Golden crossover:**  A golden cross is a trading pattern in which a short-term moving average crosses the long-term moving average from below. This is seen as a bullish indicator by trends wherein the security has gained recent momentum and has seen a breakout. Primarily, the 50-day MA is seen as the short-term moving average and the 200-day MA is seen as the long-term moving average.
+## Datasets
 
-**Death crossover:** A death cross is a trading pattern in which the short-term moving average crosses the long-term moving average from above. This is seen as a bearish indicator wherein the security is seeing a downward momentum. 
+We apply this strategy to three distinct asset classes: stocks, currencies, and cryptocurrencies. Our data is sourced automatically through APIs, with stock and currency data collected from Yahoo Finance and cryptocurrency data gathered from Binance. The data spans a ten-year period, with daily intervals, and is meticulously cleaned to remove holidays, non-trading days, and anomalies. Notably, the stock dataset includes approximately 2,500 stocks, the currency dataset features the top 500 pairs based on data availability, and the cryptocurrency dataset comprises data from Binance, taking into account delisted tokens.
 
-The golden cross and death cross can be combined as a trading strategy to find good entry and exit points into the market. The strategy can be back tested on historical data to check its performance before actual deployment of any capital into the trading strategy.
+## Methodology
 
-# Datasets
-This strategy is tried on three different assets with varying pairs. They are stocks, currencies and cryptocurrencies. They are all collected automatically using APIs. For the case of stocks and currencies, the data is collected from Yahoo Finance using their API. While cryptocurrencies data is collected from Binance. Using a python script, 10 years of historical data is collected from the API with an interval of 1 day. 
+Our approach involves calculating short and long EMAs based on user-defined input periods. The strategy triggers long positions when a Golden Cross (sign change from -1 to +1) is detected and short positions when a Death Cross (sign change from +1 to -1) occurs. We record the dates of these positions and calculate returns during these periods, comparing them against a buy-and-hold strategy. We perform this process for various combinations of EMA, SMA, and price, selecting the strategy with the best performance.
 
-For stocks, the data collected are from the Russell 3000 and SNP500. There would be a total of 3500 stocks. However, the stocks that do not have complete 10 years of daily data would be removed.  Holidays, non-trading days and any abnormal data are deleted. In this case, there would only be 2500 stocks. The industry of the stocks varies and the industry each stock is in are also different. Having variety is good as it shows what works and what doesn’t. 
+## Performance
 
-Currencies data is also collected through Yahoo Finance. Over 30,000 currency pairs are searched on Yahoo Finance. However, only 500 currency pairs are available. The currencies that do not have the complete 10 years will also be deleted.  
+Performance results vary across asset classes:
 
-Cryptocurrency data is slightly trickier. Since cryptocurrency is a new asset class, Binance does not have daily price for 10-years. It only stores data up till 2017. Hence, for cryptocurrencies, missing data is not deleted. However, each token pairs are analysed individually. Only when the token pair has been delisted from Binance, the token pair is deleted from the analysis. Binance stored a total of 500+ trading pairs and daily price can be easily extracted using the API. 
-
-Cleaning is done through a series of python codes. It can easily be done by dropping a whole column whenever there is missing data. Back-testing is also done though python which would be further described in the later chapter.
-
-# Methods
-Short and long EMA are calculated based on input periods. Post this, we find the difference between the short and long MA and note the point of sign changes. If sign goes from -1 to +1, that implies a golden crossover, and we take a long position. If the sign changes from +1 to -1, close the long position and then possibly taking a short position. We take note of the dates when these positions have been taken and sum up the log returns during this trading period and then convert it back to percentage returns. We plot this alongside a buy and hold strategy to compare the performance of this strategy. We perform this process for various types of EMA/SMA/Prices and choose the strategy with the best performance.
+- **Equity**: This is by far the Best Trading Performance. Achieves a total return of 189.2% from May 2012 to May 2022, with an annualized return of 11.2%. A short-term trend and 200-day EMA are utilized for this model, and long positions are closed on Death Cross signals.
+- ![222331544-15b19db9-1e9c-4f4f-abca-46c8d42dbd9b](https://github.com/MayankBharati/Quant-Trading-Project/assets/75744167/25d84cdb-5741-48d9-a94e-634630934090)
+- ![222331544-15b19db9-1e9c-4f4f-abca-46c8d42dbd9b](https://github.com/MayankBharati/Quant-Trading-Project/assets/75744167/7a5ff0b2-5b66-46da-9838-92497c56afe2)
 
 
-# Performance
-**Best Trading Performance – Equity** <br>
-![image](https://user-images.githubusercontent.com/63791918/222331544-15b19db9-1e9c-4f4f-abca-46c8d42dbd9b.png) <br>
-The best returns for our strategy have been seen in equity. We achieve a total return of 189.2% from May 2012 to May 2022 which is an annualized return of 11.2%. SPY’s annual max drawdown is 0.8728 and Sharpe ratio is 0.8015. In this case, we chose the price chart as the short-term trend and 200-day EMA as the long-term moving average after various combinations were tested. For this model, long positions are closed when we encounter a death cross and no short position is taken. 
-
-**Worst Trading Performance – Forex** <br>
-![image](https://user-images.githubusercontent.com/63791918/222331629-1251660d-9ad8-4545-b970-016715b609f8.png) <br>
-We saw the worst returns in the forex category from May 2012 to May 2022. The total returns over the 10 years were -61.3% using the 50 day and 200-day EMA. EX’s max drawdown is -0.8389 and Sharpe ratio is -0.0187. This was because the strategy was implemented on all forex pairs, but it works well only for a few pairs with strong momentums. In this model, long position is closed when we encounter a death cross and a short position is taken and vice versa for golden cross.
-
-**Average trading performance – Cryptocurrency** <br>
-![image](https://user-images.githubusercontent.com/63791918/222331665-42f80ee1-e2b2-4413-9e70-9812b4be8142.png) <br>
-In case of cryptocurrencies, we achieved median returns of 40.91% from July 2017 to June 2022 which converts to an annualized return of 7.1%. Cryptocurrency’s max drawdown is 0.5898 and Sharpe ratio is -0.6826. In this case, we chose the price chart as the short-term trend and 200-day EMA as the long-term moving average Due to very high volatility, cryptocurrency trades need quick actions to avoid high drawdown. In this model, the strategy is similar to forex.
 
 
-# Key Takeaways and Conclusion
-**Observations**<br>
-We observed that there were better returns in case of long only strategy then long and short strategy in case of equity. The returns also varied greatly between various combinations of Price/SMA/EMA’s. Often, it was difficult to beat the market thus the strategy needs further improvements.
 
-**Limitations**<br>
-The issue with moving averages is that they are lagging indicators thus they can generate signals long after the trend has passed. Also, there is always a possibility of false signals being generated in cases of the security trading in a small channel. Contrasting trends can also be observed on varying time periods.
+- **Forex**: This is by far the Worst Trading Performance  Records the worst returns over the same period, resulting in total returns of -61.3%. The strategy involves using the 50-day and 200-day EMA. Long positions are closed on Death Cross signals, and short positions are taken.
+- ![222331629-1251660d-9ad8-4545-b970-016715b609f8](https://github.com/MayankBharati/Quant-Trading-Project/assets/75744167/a18bc6df-20e6-42ec-b936-b2ac468d3bd4)
 
-**Optimizations**<br>
-Further improvements can be confirming signals across varying periods before taking any action. We can also account for diversification for better returns and adding a threshold return and a stop loss can lead to significant improvements to the performance of the trading strategy.
 
+- **Cryptocurrency**: This is by far an Average Trading Performance  Demonstrates an average performance, with median returns of 40.91% from July 2017 to June 2022. The strategy uses a short-term trend and a 200-day EMA. Due to high cryptocurrency volatility, swift actions are essential to mitigate drawdown.
+- ![222331665-42f80ee1-e2b2-4413-9e70-9812b4be8142](https://github.com/MayankBharati/Quant-Trading-Project/assets/75744167/dc9a9684-b203-4388-97d0-13fb03e9fb21)
+
+
+## Key Takeaways and Conclusion
+
+Our project provides valuable insights into the potential of the Golden Cross and EMA trading strategy across various asset classes. It underscores the need for ongoing refinement and adaptability in the ever-changing world of financial markets. While the strategy shows promise, there are limitations that require further improvements, such as confirming signals across multiple periods, diversification, and the introduction of threshold returns and stop-loss mechanisms.
+
+Feel free to explore the code and data in this repository to gain a deeper understanding of our analysis and to contribute to the ongoing development and optimization of this trading strategy. Your contributions are welcome as we continue to refine this strategy for better performance and broader applicability.
