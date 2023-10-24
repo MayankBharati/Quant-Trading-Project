@@ -1,4 +1,4 @@
-![222331629-1251660d-9ad8-4545-b970-016715b609f8](https://github.com/MayankBharati/Quant-Trading-Project/assets/75744167/9540d5fc-6fa5-4b58-90ce-837eb5da4c4d)# Quantitative Analysis Using Golden Cross and EMA
+# Quantitative Analysis Using Golden Cross and EMA
 
 ## Overview
 
